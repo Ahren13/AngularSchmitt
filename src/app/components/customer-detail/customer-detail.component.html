@@ -1,0 +1,95 @@
+<div *ngIf="currentCustomer" class="edit-form">
+    <h1 class="display-3">Vertragsdetail</h1>
+
+    <form>
+        <div class="form-group">
+            <h2>Kunde:
+                <small class="text-muted"> {{ currentCustomer.name }}</small>
+            </h2>
+
+        </div>
+        <div class="form-group">
+            <h3 class="text-muted">Standort</h3>
+            <input type="text" class="form-control" id="location" [(ngModel)]="customerDetail.location" required name="location" />
+        </div>
+
+        <div class="form-group">
+            <h3 class="text-muted">Ansprechpartner</h3>
+            <input type="text" class="form-control" id="contactPerson" [(ngModel)]="customerDetail.contactPerson" name="contactPerson" />
+        </div>
+
+        <div class="form-group">
+            <h3 class="text-muted">Ansprechpartner Email</h3>
+            <input type="text" class="form-control" id="contactPersonEmail" [(ngModel)]="customerDetail.contactPersonEmail" name="contactPersonEmail" />
+        </div>
+
+        <div class="form-group">
+            <h3 class="text-muted">Ansprechpartner Handynummer</h3>
+            <input type="text" class="form-control" id="contactPersonMobile" [(ngModel)]="customerDetail.contactPersonMobile" name="contactPersonMobile" />
+        </div>
+
+        <div class="form-group">
+            <label for="title"> Wartungsvertrag  &nbsp; </label>
+
+            <button class="btn btn-outline-secondary " type="button " (click)="yesButton() ">Ja</button>
+            <button class="btn btn-outline-secondary " type="button " (click)="noButton() ">nein</button>
+        </div>
+
+        <div class="form-group">
+            <h3 class="text-muted">Wartungsintervall(Liste halbjährlich/jährlich)</h3>
+            <input type="text" class="form-control" id="maintenanceInterval" [(ngModel)]="customerDetail.maintenanceInterval" name="maintenanceInterval" />
+        </div>
+
+        <div class="form-group">
+            <h3 class="text-muted">KalenderWoche</h3>
+            <input type="text" class="form-control" id="calendarWeek" [(ngModel)]="customerDetail.calendarWeek" name="calendarWeek" />
+        </div>
+
+        <div class="input-group mb-3 ">
+            <input type="button " class="form-control " placeholder="Gebäude hinzufügen " [(ngModel)]="build" />
+            <div class="input-group-append ">
+                <button class="btn btn-outline-secondary " type="button " (click)="addBuilding(build) ">
+  Gebäude hinzufügen
+</button>
+            </div>
+        </div>
+        <div *ngIf="customerDetail.building.length!=0">
+            <ul class="list-group">
+                <li *ngFor="let customerbuildings of customerDetail.building; let i = index">
+                    {{ customerbuildings }}
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="form-group">
+            <h3 class="text-muted">Fremdwartungsgebäude</h3>
+            <input type="text" class="form-control" id="exterMaintenanceBusiness" [(ngModel)]="customerDetail.exterMaintenanceBusiness" name="title" />
+        </div>
+
+        <div class="form-group">
+            <h3 class="text-muted">Notizfeld</h3>
+            <input type="text" class="form-control" id="noteField" [(ngModel)]="customerDetail.noteField" name="noteField" />
+        </div>
+
+
+
+
+    </form>
+
+
+
+    <button class="badge badge-danger mr-2" (click)="deleteCustomer()">
+      Delete
+    </button>
+
+    <button type="submit" class="badge badge-success" (click)="saveCustomerDetail()">
+      Update
+    </button>
+    <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentCustomer">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+</div>

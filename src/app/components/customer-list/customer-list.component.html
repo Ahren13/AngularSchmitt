@@ -1,0 +1,105 @@
+<div class="col-md-3">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="name" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="searchName()">
+            Suche
+          </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h3>Kundenliste</h3>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let customer of customers; let i = index" [class.active]="i == currentIndex" (click)=" retriveDetail(customer, i) && setActiveCustomer(customer, i)  ">
+                {{ customer.name }}
+            </li>
+        </ul>
+
+
+    </div>
+    <div class="col-md-3">
+        <div *ngIf="currentCustomer">
+            <h3>Kunde</h3>
+            <div>
+                <label><strong>Name:</strong></label> {{ currentCustomer.name }}
+            </div>
+            <div>
+                <label><strong>Adresse:</strong></label> {{ currentCustomer.billingAddress }}
+            </div>
+            <div>
+                <label><strong>Ansprechpartner für Rechnung:</strong></label> {{ currentCustomer.contactPerson }}
+            </div>
+            <div>
+                <label><strong>Ansprechpartner Email:</strong></label> {{ currentCustomer.email }}
+            </div>
+            <div>
+                <label><strong>Ansprechpartner Handynummer:</strong></label> {{ currentCustomer.mobileNumber }}
+            </div>
+
+            <a class="m-3 btn btn-sm btn-success" href="/customers/{{ currentCustomer._id }}">
+                Vertragsdetail hinzufügen
+              </a>
+            <a class="m-3 btn btn-sm btn-warning" href="/update-customer/{{ currentCustomer._id }}">
+                Kunde bearbeiten
+              </a>
+
+
+            <button class="m-3 btn btn-sm btn-danger" (click)="deleteCustomer()">
+            Löschen
+          </button>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div *ngIf="customerDetails">
+            <h3>Standort</h3>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let customerdet of customerDetails.customerdet; let i = index" [class.active]="i == currentIndex" (click)=" retriveDetailCustomer(customerdet, i) && setActiveCustomerdetail(customerdet, i)  ">
+                    {{ customerdet.location }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div *ngIf="customerDetails">
+            <h3>Standortdetails</h3>
+            <div *ngFor="let customerdet of customerDetails.customerdet">
+                <label><strong>Standort:</strong></label> {{ customerdet.location }}
+                <div>
+                    <label><strong>Ansprechpartner:</strong></label> {{ customerdet.contactPerson }}
+                </div>
+                <div>
+                    <label><strong>Ansprechpartner Email:</strong></label> {{ customerdet.contactPersonEmail }}
+                </div>
+                <div>
+                    <label><strong>Ansprechpartner Handynummer:</strong></label> {{ customerdet.contactPersonMobile }}
+                </div>
+                <div *ngIf="customerdet.maintenanceContract!=true">
+                    <label><strong>Wartungsvertrag:</strong></label> Nein
+                </div>
+                <div *ngIf="customerdet.maintenanceContract===true">
+                    <label><strong>Wartungsvertrag:</strong></label> Ja
+                </div>
+                <div>
+                    <label><strong>Wartungsintervall:</strong></label> {{ customerdet.maintenanceInterval }}
+                </div>
+                <div>
+                    <label><strong>KalenderWoche:</strong></label> {{ customerdet.calendarWeek }}
+                </div>
+                <div>
+                    <label><strong>Fremdwartungsgebäude:</strong></label> {{ customerdet.exterMaintenanceBusiness }}
+                </div>
+                <div>
+                    <label><strong>Notizfeld:</strong></label> {{ customerdet.noteField }}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
