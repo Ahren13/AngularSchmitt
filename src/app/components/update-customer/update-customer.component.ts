@@ -19,6 +19,7 @@ export class UpdateCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomer(this.route.snapshot.paramMap.get('id'));
+    
   }
 
   getCustomer(id) {
@@ -32,6 +33,27 @@ export class UpdateCustomerComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  updateCustomer(){
+    console.log(this.currentCustomer);
+    const data = {
+      "name": this.currentCustomer.name,
+      "billingAddress": this.currentCustomer.billingAddress,
+      "contactPerson": this.currentCustomer.contactPerson,
+      "email": this.currentCustomer.email,
+      "mobileNumber":  this.currentCustomer.mobileNumber,
+    };
+
+    console.log(data);
+
+    this.CustomerService.update(this.currentCustomer._id,data).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
   }
   
 }
