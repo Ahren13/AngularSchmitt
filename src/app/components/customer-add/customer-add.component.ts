@@ -28,7 +28,7 @@ export class CustomerAddComponent implements OnInit {
 
   constructor(
               private customerService: CustomerService) { }
-
+            
   ngOnInit(): void {
   }
 

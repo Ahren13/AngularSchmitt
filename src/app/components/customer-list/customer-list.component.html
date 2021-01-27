@@ -58,7 +58,7 @@
         <div *ngIf="customerDetails">
             <h3>Standort</h3>
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let customerdet of customerDetails.customerdet; let i = index" [class.active]="i == currentIndex" (click)=" retriveDetailCustomer(customerdet, i) && setActiveCustomerdetail(customerdet, i)  ">
+                <li class="list-group-item" *ngFor="let customerdet of customerDetails.customerdet; let i = index" [class.active]="i == currentIndex1" (click)="changeCurrentCustomerDetails(customerdet, i)">
                     {{ customerdet.location }}
                 </li>
             </ul>
@@ -66,36 +66,36 @@
     </div>
 
     <div class="col-md-3">
-        <div *ngIf="customerDetails">
+        <div *ngIf="currentCustomerDetail">
             <h3>Standortdetails</h3>
-            <div *ngFor="let customerdet of customerDetails.customerdet">
-                <label><strong>Standort:</strong></label> {{ customerdet.location }}
+            <div>
+                <label><strong>Standort:</strong></label> {{ currentCustomerDetail.location }}
                 <div>
-                    <label><strong>Ansprechpartner:</strong></label> {{ customerdet.contactPerson }}
+                    <label><strong>Ansprechpartner:</strong></label> {{ currentCustomerDetail.contactPerson }}
                 </div>
                 <div>
-                    <label><strong>Ansprechpartner Email:</strong></label> {{ customerdet.contactPersonEmail }}
+                    <label><strong>Ansprechpartner Email:</strong></label> {{ currentCustomerDetail.contactPersonEmail }}
                 </div>
                 <div>
-                    <label><strong>Ansprechpartner Handynummer:</strong></label> {{ customerdet.contactPersonMobile }}
+                    <label><strong>Ansprechpartner Handynummer:</strong></label> {{ currentCustomerDetail.contactPersonMobile }}
                 </div>
-                <div *ngIf="customerdet.maintenanceContract!=true">
+                <div *ngIf="currentCustomerDetail.maintenanceContract!=true">
                     <label><strong>Wartungsvertrag:</strong></label> Nein
                 </div>
-                <div *ngIf="customerdet.maintenanceContract===true">
+                <div *ngIf="currentCustomerDetail.maintenanceContract===true">
                     <label><strong>Wartungsvertrag:</strong></label> Ja
                 </div>
                 <div>
-                    <label><strong>Wartungsintervall:</strong></label> {{ customerdet.maintenanceInterval }}
+                    <label><strong>Wartungsintervall:</strong></label> {{ currentCustomerDetail.maintenanceInterval }}
                 </div>
                 <div>
-                    <label><strong>KalenderWoche:</strong></label> {{ customerdet.calendarWeek }}
+                    <label><strong>KalenderWoche:</strong></label> {{ currentCustomerDetail.calendarWeek }}
                 </div>
                 <div>
-                    <label><strong>Fremdwartungsgebäude:</strong></label> {{ customerdet.exterMaintenanceBusiness }}
+                    <label><strong>Fremdwartungsgebäude:</strong></label> {{ currentCustomerDetail.exterMaintenanceBusiness }}
                 </div>
                 <div>
-                    <label><strong>Notizfeld:</strong></label> {{ customerdet.noteField }}
+                    <label><strong>Notizfeld:</strong></label> {{ currentCustomerDetail.noteField }}
                 </div>
             </div>
 

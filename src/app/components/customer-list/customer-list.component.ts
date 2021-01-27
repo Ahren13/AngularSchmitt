@@ -39,7 +39,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   retrieveDetails(){
-
+    
   }
 
   setActiveCustomerdetail(customerdet, index) {
@@ -59,7 +59,6 @@ export class CustomerListComponent implements OnInit {
   setActiveCustomer(customer, index) {
     this.currentCustomer = customer;
     this.currentIndex = index;
-    
   }
 
   retriveDetail(customer, index){
@@ -120,6 +119,8 @@ export class CustomerListComponent implements OnInit {
 
   retriveDetailCustomer(customer, index){
     
+    console.log('ID: ' +customer);
+
     this.currentCustomerDetail = customer;
     this.currentIndex = index;
     this.customerService.getSingleCustomerDetail(this.currentCustomer._id)
@@ -135,4 +136,12 @@ export class CustomerListComponent implements OnInit {
         console.log(error);
       });
   }
+
+  changeCurrentCustomerDetails(customerdet, i){
+    this.currentCustomerDetail = customerdet;
+    this.currentIndex1 = i;
+  }
+
 }
+
+
