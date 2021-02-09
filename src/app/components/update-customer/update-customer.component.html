@@ -2,33 +2,31 @@
     <!--  <div *ngIf="!submitted"> -->
     <div class="form-group">
         <label class="lb-lg" for="name">Kunde</label>
-        <input type="text" style="width:30%" class="form-control" id="name" [(ngModel)] = "currentCustomer.name" required name="name" />
+        <input type="text" style="width:30%" class="form-control" id="name" [(ngModel)]="currentCustomer.name " required name="name" />
     </div>
 
     <div class="form-group">
         <label class="lb-lg" for="billingAddress">Rechnungsadresse</label>
-        <input class="form-control" style="width:30%" id="billingAddress" [(ngModel)] = "currentCustomer.billingAddress" required name="billingAddress" />
+        <input class="form-control" style="width:30%" id="billingAddress" [(ngModel)]="currentCustomer.billingAddress" required name="billingAddress" />
     </div>
 
     <div class="form-group">
         <label class="lb-lg" for="billContactPerson">Ansprechpartner für Rechnung</label>
-        <input class="form-control" style="width:30%" id="billContactPerson" [(ngModel)] = "currentCustomer.contactPerson" required name="billContactPerson" />
+        <input class="form-control" style="width:30%" id="billContactPerson" [(ngModel)]="currentCustomer.contactPerson" required name="billContactPerson" />
     </div>
 
     <div class="form-group">
         <label class="lb-lg" for="emailContactPerson">Ansprechpartner Email</label>
-        <input class="form-control" style="width:30%" id="emailContactPerson" [(ngModel)] = "currentCustomer.email" required name="emailContactPerson" />
+        <input class="form-control" style="width:30%" id="emailContactPerson" [(ngModel)]="currentCustomer.email" required name="emailContactPerson" />
     </div>
 
     <div class="form-group">
         <label class="lb-lg" for="numberContactPerson">Ansprechpartner Handynummer</label>
-        <input class="form-control" style="width:30%" id="numberContactPerson" [(ngModel)] = "currentCustomer.mobileNumber" required name="numberContactPerson" />
+        <input class="form-control" style="width:30%" id="numberContactPerson" [(ngModel)]="currentCustomer.mobileNumber" required name="numberContactPerson" />
     </div>
 
 
 </div>
-
-
 
 <!-- [(ngModel)]="customer.name" -->
 <!-- [(ngModel)]="tutorial.description" -->

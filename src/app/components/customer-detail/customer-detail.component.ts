@@ -27,7 +27,9 @@ export class CustomerDetailComponent implements OnInit {
     exterMaintenanceBusiness: '',
     noteField: ''
   };
-  
+
+  public courseList = [];
+  public course;
 
   
   
@@ -60,16 +62,19 @@ export class CustomerDetailComponent implements OnInit {
 
   
 
+  
+
   yesButton(){
-    this.customerDetail.maintenanceContract = this.wartungsvertragTrue;
+    this.customerDetail.maintenanceContract = true;
     console.log(this.customerDetail.maintenanceContract);
-    return true;
+    return this.customerDetail.maintenanceContract;
   }
 
   noButton(){
-    this.currentCustomer.maintenanceContract = this.wartungsvertragFalse;
-    console.log(this.currentCustomer.maintenanceContract);
-
+    
+    this.customerDetail.maintenanceContract = false;
+    console.log("maintenanceContract->>>>>> " + this.customerDetail.maintenanceContract);
+    return this.customerDetail.maintenanceContract;
   }
 
   /* updatePublished(status) {
@@ -145,6 +150,12 @@ export class CustomerDetailComponent implements OnInit {
     this.customerDetail.building.push(build);
     console.log(this.customerDetail.building); 
     
+  }
+
+  addCourse() {
+    this.courseList.push(this.course);
+    console.log(this.courseList);
+    this.course = '';
   }
 
 

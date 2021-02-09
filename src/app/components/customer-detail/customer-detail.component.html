@@ -53,14 +53,24 @@
 </button>
             </div>
         </div>
-        <div *ngIf="customerDetail.building.length!=0">
+
+        <!-- <div *ngIf="customerDetail.building.length!=0">
             <ul class="list-group">
                 <li *ngFor="let customerbuildings of customerDetail.building; let i = index">
                     {{ customerbuildings }}
                 </li>
             </ul>
-        </div>
+        </div> -->
 
+
+
+        <ul>
+            <li *ngFor="let course of courseList">
+                {{course}}
+            </li>
+        </ul>
+        <input type="text" id="course" name="course" class="form-control" [(ngModel)]="course">
+        <button (click)="addCourse()">Add Course</button>
 
         <div class="form-group">
             <h3 class="text-muted">Fremdwartungsgebäude</h3>

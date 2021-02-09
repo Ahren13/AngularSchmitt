@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateCustomerComponent implements OnInit {
 
   currentCustomer = null;
+  
 
   constructor(private CustomerService: CustomerService,
     private route: ActivatedRoute,
@@ -17,10 +18,19 @@ export class UpdateCustomerComponent implements OnInit {
     
    }
 
+   
+
   ngOnInit(): void {
+
     this.getCustomer(this.route.snapshot.paramMap.get('id'));
+    console.log(this.currentCustomer);
     
   }
+ 
+
+
+  
+  
 
   getCustomer(id) {
     this.CustomerService.get(id)
@@ -28,7 +38,7 @@ export class UpdateCustomerComponent implements OnInit {
         data => {
           this.currentCustomer = data;
           
-          console.log(data);
+          console.log("test" +this.currentCustomer);
         },
         error => {
           console.log(error);

@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h3>Kundenliste</h3>
+        <h1 class="text-muted">Kundenliste</h1>
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let customer of customers; let i = index" [class.active]="i == currentIndex" (click)=" retriveDetail(customer, i) && setActiveCustomer(customer, i)  ">
                 {{ customer.name }}
@@ -22,7 +22,7 @@
     </div>
     <div class="col-md-3">
         <div *ngIf="currentCustomer">
-            <h3>Kunde</h3>
+            <h1 class="text-muted">Kunde</h1>
             <div>
                 <label><strong>Name:</strong></label> {{ currentCustomer.name }}
             </div>
@@ -39,24 +39,23 @@
                 <label><strong>Ansprechpartner Handynummer:</strong></label> {{ currentCustomer.mobileNumber }}
             </div>
 
-            <a class="m-3 btn btn-sm btn-success" href="/customers/{{ currentCustomer._id }}">
+            <div class="btn-group-vertical">
+                <button class="m-2 btn btn-lg btn-success" routerLink="/customers/{{ currentCustomer._id }}">
                 Vertragsdetail hinzufügen
-              </a>
-            <a class="m-3 btn btn-sm btn-warning" href="/update-customer/{{ currentCustomer._id }}">
+            </button>
+                <button class="m-2 btn btn-lg btn-warning" routerLink="/update-customer/{{ currentCustomer._id }}">
                 Kunde bearbeiten
-              </a>
-
-
-            <button class="m-3 btn btn-sm btn-danger" (click)="deleteCustomer()">
+            </button>
+                <button class="m-2 btn btn-lg btn-danger" (click)="deleteCustomer()">
             Löschen
           </button>
-
+            </div>
         </div>
     </div>
 
     <div class="col-md-3">
         <div *ngIf="customerDetails">
-            <h3>Standort</h3>
+            <h1 class="text-muted">Standort</h1>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let customerdet of customerDetails.customerdet; let i = index" [class.active]="i == currentIndex1" (click)="changeCurrentCustomerDetails(customerdet, i)">
                     {{ customerdet.location }}
@@ -67,7 +66,7 @@
 
     <div class="col-md-3">
         <div *ngIf="currentCustomerDetail">
-            <h3>Standortdetails</h3>
+            <h1 class="text-muted">Standortdetails</h1>
             <div>
                 <label><strong>Standort:</strong></label> {{ currentCustomerDetail.location }}
                 <div>

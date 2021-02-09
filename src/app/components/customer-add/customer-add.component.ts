@@ -10,6 +10,7 @@ import { CustomerListComponent } from '../customer-list/customer-list.component'
 })
 export class CustomerAddComponent implements OnInit {
 
+
   customer = {
     name: '',
     billingAddress: '',
@@ -19,6 +20,7 @@ export class CustomerAddComponent implements OnInit {
   };
 
   buttonCheck = false;
+  disabled = false; 
  /*  public customerName: string;
   public customerBillingAddress: string;
   public customerContactPerson: string;
@@ -52,9 +54,22 @@ export class CustomerAddComponent implements OnInit {
         error => {
           console.log(error);
         });
+
+        this.disabled = true;
+  }
+
+  releaseInputs(){
+    this.disabled = false;
+    this.buttonCheck = false;
+    this.customer = {
+      name: '',
+      billingAddress: '',
+      contactPerson: '',
+      email: '',
+      mobileNumber: '',
+    };
   }
   
-    
     
     
   }
