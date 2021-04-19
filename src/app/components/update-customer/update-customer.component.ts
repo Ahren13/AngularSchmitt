@@ -11,24 +11,41 @@ export class UpdateCustomerComponent implements OnInit {
 
   currentCustomer = null;
 
+ 
+  buttonCheck = false;
+  disabled = false; 
+  
+
   constructor(private CustomerService: CustomerService,
     private route: ActivatedRoute,
     private router: Router) {
     
    }
 
+   
+
   ngOnInit(): void {
+
     this.getCustomer(this.route.snapshot.paramMap.get('id'));
+    //console.log(this.currentCustomer);
     
   }
+ 
+
+
+  
+  
 
   getCustomer(id) {
+    
+
     this.CustomerService.get(id)
       .subscribe(
         data => {
           this.currentCustomer = data;
           
-          console.log(data);
+          console.log(this.currentCustomer);
+          
         },
         error => {
           console.log(error);
@@ -54,6 +71,8 @@ export class UpdateCustomerComponent implements OnInit {
       error => {
         console.log(error);
       });
+      this.buttonCheck = true;
+        this.disabled = true;
   }
   
 }
