@@ -12,9 +12,12 @@ import { DoorsAddComponent } from './components/doors-add/doors-add.component';
 
 
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateCustomerComponent } from './components/update-customer/update-customer.component';
+import { BuildingAddComponent } from './components/building-add/building-add.component';
+
+
 
 
 
@@ -26,7 +29,8 @@ import { UpdateCustomerComponent } from './components/update-customer/update-cus
     ContractForAppComponent,
     CustomerDetailComponent,
     DoorsAddComponent,
-    UpdateCustomerComponent
+    UpdateCustomerComponent,
+    BuildingAddComponent
   ],
   imports: [
     BrowserModule,

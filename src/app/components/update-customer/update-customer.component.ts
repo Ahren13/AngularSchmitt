@@ -10,6 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateCustomerComponent implements OnInit {
 
   currentCustomer = null;
+
+ 
+  buttonCheck = false;
+  disabled = false; 
   
 
   constructor(private CustomerService: CustomerService,
@@ -23,7 +27,7 @@ export class UpdateCustomerComponent implements OnInit {
   ngOnInit(): void {
 
     this.getCustomer(this.route.snapshot.paramMap.get('id'));
-    console.log(this.currentCustomer);
+    //console.log(this.currentCustomer);
     
   }
  
@@ -33,12 +37,15 @@ export class UpdateCustomerComponent implements OnInit {
   
 
   getCustomer(id) {
+    
+
     this.CustomerService.get(id)
       .subscribe(
         data => {
           this.currentCustomer = data;
           
-          console.log("test" +this.currentCustomer);
+          console.log(this.currentCustomer);
+          
         },
         error => {
           console.log(error);
@@ -64,6 +71,8 @@ export class UpdateCustomerComponent implements OnInit {
       error => {
         console.log(error);
       });
+      this.buttonCheck = true;
+        this.disabled = true;
   }
   
 }

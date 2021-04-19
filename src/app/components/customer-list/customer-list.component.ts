@@ -12,20 +12,35 @@ export class CustomerListComponent implements OnInit {
   customers: any;
   currentCustomer = null;
   currentCustomerDetail = null;
+  currentBuilding = null;
+  currentDoor = null;
+  
+  //-1 damit es nicht sofort ausgewählt wird
   currentIndex = -1;
-  currentIndex1 =-1;
+  currentIndexDetail =-1;
+
+  currentIndex1 = -1;
+
+  currentIndex2 = -1;
+
   name = '';
   currentCustomerId = null;
   customerDetails = null;
+
+  buildings = null;
+
+  doors = null;
+
+  detailID = null;
   
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
     this.retrieveCustomers();
-    
-    
   }
+
+  
   retrieveCustomers() {
     this.customerService.getAll()
       .subscribe(
@@ -38,47 +53,70 @@ export class CustomerListComponent implements OnInit {
         });
   }
 
-  retrieveDetails(){
-    
-  }
-
-  setActiveCustomerdetail(customerdet, index) {
-    this.currentCustomerDetail = customerdet;
-    this.currentIndex = index;
-    console.log("currentCustomerDetail" + this.currentCustomerDetail);
-  }
-
-  
-
   refreshList() {
     this.retrieveCustomers();
     this.currentCustomer = null;
     this.currentIndex = -1;
   }
 
-  setActiveCustomer(customer, index) {
-    this.currentCustomer = customer;
-    this.currentIndex = index;
-  }
-
-  retriveDetail(customer, index){
+  retriveDetails(customer, index){
     
     this.currentCustomer = customer;
     this.currentIndex = index;
-    this.customerService.getCustomerDetail(this.currentCustomer._id)
-    .subscribe(
-      data => {
-        this.customerDetails = data;
-        console.log(data);
-        //console.log("TEST: " + this.customerDetails.customerdet[0].location)
-        
-
-      },
-      error => {
-        console.log(error);
-      });
+    this.customerDetails = this.currentCustomer.kundenDetails
+    //console.log(this.currentCustomer);
+    /*console.log(this.customerDetails);
+    console.log(this.currentIndex);
+    console.log("testa"); */
   }
 
+  searchName() {
+   /*  console.log(this.name);
+    this.customerService.findByName(this.name)
+      .subscribe(
+        data => {
+          this.customers = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }); */
+  }
+
+  retriveBuildings(customerdet, i){
+    this.currentCustomerDetail = customerdet;
+    this.currentIndexDetail = i;
+    this.buildings = this.currentCustomerDetail.buildings;
+    this.detailID = this.currentCustomerDetail._id;
+    console.log(this.detailID)
+    
+  }
+
+
+  //***************************wurde nicht mehr benutzt**************************************//
+  /* setActiveCustomerdetail(customerdet, index) {
+    this.currentCustomerDetail = customerdet;
+    this.currentIndex = index;
+    console.log("currentCustomerDetail" + this.currentCustomerDetail);
+  } */
+
+  
+
+  
+
+  //***************************wurde nicht mehr benutzt**************************************//
+  //unnötig, ist in retriveDetail noch drin 
+  /* setActiveCustomer(customer, index) {
+    this.currentCustomer = customer;
+    this.currentIndex = index;
+
+    console.log("testasdtsdt");
+    
+  }
+ */
+  
+
+  //***************************wurde nicht mehr benutzt**************************************//
   /* removeAllCustomers() {
     this.customerService.delete(this.currentCustomer.id)
       .subscribe(
@@ -91,57 +129,57 @@ export class CustomerListComponent implements OnInit {
         });
   } */
 
-  deleteCustomer() {
+
+  //***************************wurde nicht mehr benutzt**************************************//
+  deleteCustomer(customer,index) {
     console.log(this.currentCustomer);
     this.customerService.delete(this.currentCustomer._id)
       .subscribe(
         response => {
           console.log(response);
-          this.retrieveCustomers();
+                 
         },
         error => {
           console.log(error);
         });
+        this.refreshList(); 
   }
 
-  searchName() {
-    console.log(this.name);
-    this.customerService.findByName(this.name)
-      .subscribe(
-        data => {
-          this.customers = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
+  
 
-  retriveDetailCustomer(customer, index){
+
+  //***************************wurde nicht mehr benutzt**************************************//
+  /* retriveDetailCustomer(customer, index){
     
     console.log('ID: ' +customer);
 
     this.currentCustomerDetail = customer;
     this.currentIndex = index;
-    this.customerService.getSingleCustomerDetail(this.currentCustomer._id)
-    .subscribe(
-      data => {
-        this.customerDetails = data;
-        console.log(data);
-        //console.log("TEST: " + this.customerDetails.customerdet[0].location)
-        
+    this.customerDetails = this.currentCustomer.kundenDetails
+    console.log("test + " +this.customerDetails);
+    
+  } */
 
-      },
-      error => {
-        console.log(error);
-      });
-  }
 
-  changeCurrentCustomerDetails(customerdet, i){
-    this.currentCustomerDetail = customerdet;
+  //***************************wurde nicht mehr benutzt**************************************//
+  //unnötig, da retriveBuilding das schon macht  
+  retrieveDoors(building, i){
+    console.log(building);
+    console.log(i);
+    this.currentBuilding = building;
     this.currentIndex1 = i;
-  }
 
+    this.doors = this.currentBuilding.doors;
+    //this.currentCustomerDetail = building;
+    //this.currentIndex1 = i;
+  }
+  
+  check(door, i){
+    console.log(door);
+    console.log(i);
+    this.currentDoor = door;
+    this.currentIndex2= i;
+  }
 }
 
 

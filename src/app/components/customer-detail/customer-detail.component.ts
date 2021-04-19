@@ -28,8 +28,12 @@ export class CustomerDetailComponent implements OnInit {
     noteField: ''
   };
 
-  public courseList = [];
-  public course;
+  public buildingList = [];
+  public building;
+
+
+  buttonCheck = false;
+  disabled = false;
 
   
   
@@ -61,7 +65,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   
-
+  
   
 
   yesButton(){
@@ -117,6 +121,9 @@ export class CustomerDetailComponent implements OnInit {
         error => {
           console.log(error);
         });
+
+        this.buttonCheck = true;
+        this.disabled = true;
   }
 
   updateCustomer() {
@@ -153,11 +160,26 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   addCourse() {
-    this.courseList.push(this.course);
-    console.log(this.courseList);
-    this.course = '';
+    this.buildingList.push(this.building);
+    console.log(this.buildingList);
+    this.building = '';
+
   }
 
-
-  
+  releaseInputs(){
+    this.disabled = false;
+    this.buttonCheck = false;
+    this.customerDetail = {
+      location: '',
+      contactPerson: '',
+      contactPersonEmail: '',
+      contactPersonMobile: '',
+      maintenanceContract: false,
+      maintenanceInterval: '',
+      calendarWeek: '',
+      building: [],
+      exterMaintenanceBusiness: '',
+      noteField: ''
+    };
+  }
 }

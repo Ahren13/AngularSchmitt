@@ -3,9 +3,11 @@ import { Customer } from '../../services/customer.model';
 import { CustomerService } from 'src/app/services/customer.service';
 import { CustomerListComponent } from '../customer-list/customer-list.component';
 
+
 @Component({
   selector: 'app-customer-add',
-  templateUrl: './customer-add.component.html',
+  templateUrl: 
+  './customer-add.component.html',
   styleUrls: ['./customer-add.component.css']
 })
 export class CustomerAddComponent implements OnInit {
@@ -29,7 +31,8 @@ export class CustomerAddComponent implements OnInit {
   public customerList: Customer[] = new Array(); */
 
   constructor(
-              private customerService: CustomerService) { }
+  private customerService: CustomerService
+  ) { }
             
   ngOnInit(): void {
   }
@@ -49,12 +52,12 @@ export class CustomerAddComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.buttonCheck = true;
+          
         },
         error => {
           console.log(error);
         });
-
+        this.buttonCheck = true;
         this.disabled = true;
   }
 

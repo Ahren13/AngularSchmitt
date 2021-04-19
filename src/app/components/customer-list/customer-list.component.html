@@ -13,12 +13,10 @@
     <div class="col-md-3">
         <h1 class="text-muted">Kundenliste</h1>
         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let customer of customers; let i = index" [class.active]="i == currentIndex" (click)=" retriveDetail(customer, i) && setActiveCustomer(customer, i)  ">
+            <li class="list-group-item" *ngFor="let customer of customers; let i = index" [class.active]="i == currentIndex" (click)="retriveDetails(customer, i)">
                 {{ customer.name }}
             </li>
         </ul>
-
-
     </div>
     <div class="col-md-3">
         <div *ngIf="currentCustomer">
@@ -40,13 +38,13 @@
             </div>
 
             <div class="btn-group-vertical">
-                <button class="m-2 btn btn-lg btn-success" routerLink="/customers/{{ currentCustomer._id }}">
+                <button class="m-2 btn btn-lg btn-success btn-fix-size" routerLink="/customers/{{ currentCustomer._id }}">
                 Vertragsdetail hinzufügen
             </button>
-                <button class="m-2 btn btn-lg btn-warning" routerLink="/update-customer/{{ currentCustomer._id }}">
+                <button class="m-2 btn btn-lg btn-warning btn-fix-size" routerLink="/update-customer/{{ currentCustomer._id }}">
                 Kunde bearbeiten
             </button>
-                <button class="m-2 btn btn-lg btn-danger" (click)="deleteCustomer()">
+                <button class="m-2 btn btn-lg btn-danger btn-fix-size" (click)="deleteCustomer()">
             Löschen
           </button>
             </div>
@@ -57,7 +55,7 @@
         <div *ngIf="customerDetails">
             <h1 class="text-muted">Standort</h1>
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let customerdet of customerDetails.customerdet; let i = index" [class.active]="i == currentIndex1" (click)="changeCurrentCustomerDetails(customerdet, i)">
+                <li class="list-group-item" *ngFor="let customerdet of customerDetails; let i = index" [class.active]="i == currentIndexDetail" (click)="retriveBuildings(customerdet, i)">
                     {{ customerdet.location }}
                 </li>
             </ul>
@@ -98,7 +96,84 @@
                 </div>
             </div>
 
+            <div class="btn-group-vertical">
+                <button class="m-2 btn btn-lg btn-success btn-fix-size" routerLink="/building-add/{{ currentCustomer._id }}/{{ currentCustomerDetail._id }}">
+                Gebäude hinzufügen
+            </button>
+                <button class="m-2 btn btn-lg btn-warning btn-fix-size" routerLink="/update-customer/{{ currentCustomer._id }}">
+                Kundendetail bearbeiten
+            </button>
+                <button class="m-2 btn btn-lg btn-danger btn-fix-size" (click)="deleteCustomer()">
+            Löschen
+          </button>
+            </div>
+
 
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div *ngIf="buildings">
+            <h1 class="text-muted">Gebäude</h1>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let building of buildings; let i = index" [class.active]="i == currentIndex1" (click)="retrieveDoors(building, i)">
+                    {{ building.buildingName }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div *ngIf="currentBuilding">
+            <div class="btn-group-vertical">
+                <button class="m-2 btn btn-lg btn-success btn-fix-size" routerLink="/door-add/{{ currentCustomer._id }}/{{ currentCustomerDetail._id }}/{{ currentBuilding._id }}"> 
+        Türen hinzufügen
+    </button>
+                <button class="m-2 btn btn-lg btn-warning btn-fix-size">
+        Grundrisse anschauen
+    </button>
+                <button class="m-2 btn btn-lg btn-danger btn-fix-size">
+    Löschen
+  </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div *ngIf="doors">
+            <h1 class="text-muted">Türen</h1>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let door of doors; let i = index" [class.active]="i == currentIndex2" (click)="check(door, i)">
+                    {{ door.number }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div *ngIf="currentDoor">
+            <h1 class="text-muted">Tür</h1>
+            <div>
+                <label><strong>Nummer:</strong></label> {{ currentDoor.number }}
+            </div>
+            <div>
+                <label><strong>Jahr:</strong></label> {{ currentDoor.year }}
+            </div>
+
+            <div>
+                <label><strong>NKTIP:</strong></label> {{ currentDoor.nktip }}
+            </div>
+            <div>
+                <label><strong>TYP:</strong></label> {{ currentDoor.typ }}
+            </div>
+            <div>
+                <label><strong>DIN:</strong></label> {{ currentDoor.din }}
+            </div>
+            <div>
+                <label><strong>Hinweis:</strong></label> {{ currentDoor.hint }}
+            </div>
+        </div>
+    </div>
+
+
 </div>

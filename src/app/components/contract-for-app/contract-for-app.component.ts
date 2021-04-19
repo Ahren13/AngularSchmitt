@@ -69,7 +69,7 @@ export class ContractForAppComponent implements OnInit {
   }
 
   searchName() {
-    console.log(this.name);
+   /*  console.log(this.name);
     this.customerService.findByName(this.name)
       .subscribe(
         data => {
@@ -78,7 +78,7 @@ export class ContractForAppComponent implements OnInit {
         },
         error => {
           console.log(error);
-        });
+        }); */
   }
 }
 
